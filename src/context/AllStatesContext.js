@@ -1,7 +1,7 @@
 import createDataContext from "./createDataContext";
 import axios from "../api/axios";
 
-const API_KEY = "8a4bfbd3a9be495faddd031b6b24a226";
+const API_KEY = "<Your Key>";
 
 const INITIAL_STATE = {
   StatesSummary: [],
