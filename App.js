@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Provider } from "./src/context/AllStatesContext";
+import IndexScreen from "./src/screens/IndexScreen";
+import CountiesScreen from "./src/screens/CountiesScreen";
+const Stack = createStackNavigator();
 
-export default function App() {
+export default App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Provider>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "#573400",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerRight: () => <TouchableOpacity></TouchableOpacity>,
+          }}
+        >
+          <Stack.Screen name="Home" component={IndexScreen} />
+          <Stack.Screen
+            name="Counties"
+            component={CountiesScreen}
+            options={({ route }) => ({ title: route.params.res })}
+          />
+        </Stack.Navigator>
+      </Provider>
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
